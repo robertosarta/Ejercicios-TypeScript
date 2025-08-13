@@ -1,59 +1,51 @@
 "use strict";
-const myName = "Abel";
-//* Inferencia de tipos
-let age = 35;
-//* Redeclaración (prohibida) y reasignación
-age = 36;
-//* Booleanos
-let isSummer = false;
-isSummer = true;
-//* Arrays
-const months = ["enero", "febrero", "marzo"];
-months.push("junio");
-months.push(2026); //! Error porque el array solo admite strings
-//* Funciones
-//* Una función sencilla, con tipos explícitos
-function sayHello(nombre) {
-    return `Hola ${nombre}`;
+// EJERCICIO 2
+const nameInput = document.getElementById("name");
+const ageInput = document.getElementById("age");
+const submitBtn = document.getElementById("submit");
+function helloName(nombre) {
+    console.log(`Hola ${nombre}`);
 }
-console.log(sayHello("Abel"));
-function addNumbers(num1, num2) {
-    return num1 + num2;
+function helloAge(edad) {
+    console.log(`Tu edad son ${edad} años`);
 }
-console.log(addNumbers(3, 5)); // 8
-console.log(addNumbers(3, "15")); // 315
-console.log(addNumbers(15)); // NaN
-//* Función que puede devolver un valor undefined, como es el caso si no cumple la condición del if
-function addNumbersOrNot(num1, num2) {
-    if (num1 > 5) {
-        return num1 + num2;
-    }
+submitBtn.addEventListener("click", () => {
+    const nameValue = nameInput.value;
+    const ageValue = Number(ageInput.value);
+    helloName(nameValue);
+    helloAge(ageValue);
+    nameInput.value = "";
+    ageInput.value = "";
+});
+// EJERCICIO 3
+function alignHTMLElement(alignment) {
+    console.log(`El elemento se alineara a la ${alignment}`);
 }
-const addNumbersArrowFn = (num1, num2) => num1 + num2;
-const toUppercase = (palabra) => palabra.toUpperCase();
-console.log(addNumbersOrNot(1, 3));
-function logMessage(message) {
-    // * Type guards
-    // * con typeof y con instanceof 
-    if (typeof message === 'string') {
-        return message.toUpperCase();
+// EJERCICIO 4
+function calcularPrecioConImpuesto(precio, impuesto = 21) {
+    return precio + (precio * impuesto / 100);
+}
+console.log(`Ejercicio 4: ${calcularPrecioConImpuesto(100, 10)}`);
+// EJERCICIO 5
+function addNumbers(num1, num2, ...rest) {
+    let total = num1 + num2;
+    total += rest.reduce((accumulator, current) => accumulator + current, 0); //Reduce vale para recorrer el array e ir sumando y actuaizando el resultado
+    return total;
+}
+console.log(`Ejercicio 5: ${addNumbers(2, 2, 2, 2, 2)}`);
+// EJERCICIO 6
+function printHumanReadableDate(fecha) {
+    let dateObj;
+    if (typeof fecha === "string") {
+        dateObj = new Date(fecha);
     }
     else {
-        return message.toFixed(2);
+        dateObj = fecha;
     }
+    const opciones = { weekday: 'long', day: 'numeric', month: 'long' };
+    return dateObj.toLocaleDateString('es-ES', opciones);
 }
-logMessage(123);
-logMessage("Hola");
-//* Type any implícito
-let msg; // tipo any
-//! Tipo any implícito, marcado como error con el flag noImplicitAny
-function fnWithAny(param1) {
-    console.log(param1);
-}
-//* En funciones donde sea evidente, no es tan necesario explicitar tipos
-const doubles = [1, 3, 5, 7].map((numero) => numero * 2);
-[1, 3, 5, 6].forEach((number) => {
-    console.log(number * 2);
-});
-//* Map y forEach ambos son métodos de arrays, con diferencias en la sintaxis y en que map() ya a su vez devuelve un nuevo array, mientras que forEach solo lo recorre
-console.log(doubles);
+const fecha = new Date();
+const fechaString = "2025-01-15T11:56:03.673Z";
+console.log(`Ejercicio 6: tu fecha es: ${printHumanReadableDate(fecha)}`);
+console.log(`Ejercicio 6: tu fecha es: ${printHumanReadableDate(fechaString)}`);

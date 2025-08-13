@@ -1,84 +1,60 @@
+// EJERCICIO 2
+const nameInput = document.getElementById("name") as HTMLInputElement;
+const ageInput = document.getElementById("age") as HTMLInputElement;
+const submitBtn = document.getElementById("submit") as HTMLInputElement;
 
-	const myName = "Abel"; 
+function helloName(nombre: string): void {
+	console.log(`Hola ${nombre}`);
+}
 
-	//* Inferencia de tipos
-	let age: number = 35;
+function helloAge(edad: number): void{
+	console.log(`Tu edad son ${edad} años`);
+}
 
-	//* Redeclaración (prohibida) y reasignación
-	age = 36;
+submitBtn.addEventListener("click", () => {
+	const nameValue: string = nameInput.value;
+	const ageValue: number = Number(ageInput.value);
 
-	//* Booleanos
-	let isSummer: boolean = false;
-	isSummer = true;
+	helloName(nameValue);
+	helloAge(ageValue);
+	nameInput.value = "";
+	ageInput.value = "";
+})
 
-	//* Arrays
-	const months: string[] = ["enero", "febrero", "marzo"];
-	months.push("junio");
-	months.push(2026); //! Error porque el array solo admite strings
+// EJERCICIO 3
+function alignHTMLElement(alignment: "center" | "left" | "right"): void {
+	console.log(`El elemento se alineara a la ${alignment}`)
+}
 
-	//* Funciones
-	//* Una función sencilla, con tipos explícitos
-	function sayHello(nombre: string): string {
-		return `Hola ${nombre}`;
+// EJERCICIO 4
+function calcularPrecioConImpuesto(precio: number, impuesto: number = 21): number {
+	return precio +(precio * impuesto / 100);
+}
+console.log(`Ejercicio 4: ${calcularPrecioConImpuesto(100, 10)}`);
+
+// EJERCICIO 5
+function addNumbers(num1: number, num2: number, ...rest: number[]): number {
+	let total = num1 + num2;
+	total += rest.reduce((accumulator, current) => accumulator + current, 0); //Reduce vale para recorrer el array e ir sumando y actuaizando el resultado
+	return total;
+}
+console.log(`Ejercicio 5: ${addNumbers(2, 2, 2, 2, 2)}`);
+
+// EJERCICIO 6
+function printHumanReadableDate(fecha: string | Date): string{
+	let dateObj: Date;
+
+	if (typeof fecha === "string"){
+		dateObj = new Date(fecha);
+	}else {
+		dateObj = fecha;
 	}
 
-	console.log(sayHello("Abel"));
+	const opciones: Intl.DateTimeFormatOptions = { weekday: 'long', day: 'numeric', month: 'long'};
+	return dateObj.toLocaleDateString('es-ES', opciones);
+}
 
-	function addNumbers(num1: number, num2: number): number {
-		return num1 + num2;
-	}
-
-	console.log(addNumbers(3, 5)) // 8
-	console.log(addNumbers(3, "15")); // 315
-	console.log(addNumbers(15)); // NaN
-	
-	//* Función que puede devolver un valor undefined, como es el caso si no cumple la condición del if
-	function addNumbersOrNot(num1: number, num2: number): number | undefined {
-		if (num1 > 5) {
-			return num1 + num2;
-		}
-	}
-
-	//* Type alias
-	type numero = number;
-
-	const addNumbersArrowFn = (num1: numero, num2: numero): numero => num1 + num2;
-
-	const toUppercase = (palabra: string) => palabra.toUpperCase();
-
-	console.log(addNumbersOrNot(1, 3));
-
-	// * Type alias con union type
-	type stringOrNumber = string | number;
-
-	function logMessage(message: stringOrNumber): stringOrNumber {
-		// * Type guards
-		// * con typeof y con instanceof 
-		if (typeof message === 'string') {
-			return message.toUpperCase();
-		} else {
-			return message.toFixed(2);
-		}
-	}
-
-	logMessage(123);
-	logMessage("Hola");
-
-	//* Type any implícito
-	let msg; // tipo any
-
-	//! Tipo any implícito, marcado como error con el flag noImplicitAny
-	function fnWithAny(param1) {
-		console.log(param1);
-	}
-
-	//* En funciones donde sea evidente, no es tan necesario explicitar tipos
-	const doubles = [1, 3, 5, 7].map((numero) => numero * 2);
-
-	[1,3,5,6].forEach((number) => {
-		console.log(number * 2)
-	});
-
-	//* Map y forEach ambos son métodos de arrays, con diferencias en la sintaxis y en que map() ya a su vez devuelve un nuevo array, mientras que forEach solo lo recorre
-
-	console.log(doubles);
+const fecha: Date = new Date();
+const fechaString: string = "2025-01-15T11:56:03.673Z";
+console.log(`Ejercicio 6: tu fecha es: ${printHumanReadableDate(fecha)}`);
+console.log(`Ejercicio 6: tu fecha es: ${printHumanReadableDate(fechaString)}`);
