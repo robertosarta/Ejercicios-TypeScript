@@ -1,0 +1,9 @@
+{
+	"compilerOptions": {
+		"target": "ES6",
+		"noEmitOnError": true,
+		"declaration": true,
+		"strict": true, /*obligatoria*/
+		"noImplicitAny": true /*obligatoria*/
+	},
+}

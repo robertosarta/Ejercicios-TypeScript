@@ -1,0 +1,15 @@
+declare const myName = "Abel";
+declare let age: number;
+declare let isSummer: boolean;
+declare const months: string[];
+declare function sayHello(nombre: string): string;
+declare function addNumbers(num1: number, num2: number): number;
+declare function addNumbersOrNot(num1: number, num2: number): number | undefined;
+type numero = number;
+declare const addNumbersArrowFn: (num1: numero, num2: numero) => numero;
+declare const toUppercase: (palabra: string) => string;
+type stringOrNumber = string | number;
+declare function logMessage(message: stringOrNumber): stringOrNumber;
+declare let msg: any;
+declare function fnWithAny(param1: any): void;
+declare const doubles: number[];
