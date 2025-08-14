@@ -4,6 +4,8 @@
 		"noEmitOnError": true,
 		"declaration": true,
 		"strict": true, /*obligatoria*/
-		"noImplicitAny": true /*obligatoria*/
+		"noImplicitAny": true, /*obligatoria*/
+		"outDir": "./dist",
+		"rootDir": "./"
 	},
 }

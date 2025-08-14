@@ -49,3 +49,20 @@ const fecha = new Date();
 const fechaString = "2025-01-15T11:56:03.673Z";
 console.log(`Ejercicio 6: tu fecha es: ${printHumanReadableDate(fecha)}`);
 console.log(`Ejercicio 6: tu fecha es: ${printHumanReadableDate(fechaString)}`);
+// EJERCICIO 7
+const formE7 = document.getElementById("formE7");
+const inputE7 = document.getElementById("inputE7");
+if (!formE7 || !inputE7) {
+    throw new Error("No se encontró el formulario o el input en el DOM");
+}
+formE7.addEventListener("submit", (event) => {
+    event.preventDefault(); //hace que la pagina no se recarge
+    const valor = inputE7.value.trim();
+    ;
+    if (valor === "") {
+        console.warn("El campo de texto esta vacio");
+        ;
+        return;
+    }
+    console.log(`valor enviado: ${valor}`);
+});

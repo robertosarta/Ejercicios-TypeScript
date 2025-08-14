@@ -9,3 +9,5 @@ declare function addNumbers(num1: number, num2: number, ...rest: number[]): numb
 declare function printHumanReadableDate(fecha: string | Date): string;
 declare const fecha: Date;
 declare const fechaString: string;
+declare const formE7: HTMLFormElement | null;
+declare const inputE7: HTMLInputElement | null;
