@@ -11,3 +11,18 @@ declare const fecha: Date;
 declare const fechaString: string;
 declare const formE7: HTMLFormElement | null;
 declare const inputE7: HTMLInputElement | null;
+type Persona = {
+    name: string;
+    birthYear: number;
+    city?: string;
+};
+declare const Roberto: Persona;
+declare function getPersonInfo(currentYear: number, persona: Persona): [string, number];
+declare const resultadoE8: [string, number];
+declare enum Medallas {
+    First = "Oro",
+    Second = "Plata",
+    Third = "Bronce"
+}
+type MedalsType = typeof Medallas;
+declare function showMedal(clasificacion: keyof MedalsType, medallas: MedalsType): void;

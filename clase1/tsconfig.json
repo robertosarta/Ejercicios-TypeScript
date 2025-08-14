@@ -6,6 +6,6 @@
 		"strict": true, /*obligatoria*/
 		"noImplicitAny": true, /*obligatoria*/
 		"outDir": "./dist",
-		"rootDir": "./"
+		"rootDir": "./src"
 	},
 }

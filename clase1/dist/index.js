@@ -56,7 +56,6 @@ if (!formE7 || !inputE7) {
     throw new Error("No se encontró el formulario o el input en el DOM");
 }
 formE7.addEventListener("submit", (event) => {
-    event.preventDefault(); //hace que la pagina no se recarge
     const valor = inputE7.value.trim();
     ;
     if (valor === "") {
@@ -66,3 +65,27 @@ formE7.addEventListener("submit", (event) => {
     }
     console.log(`valor enviado: ${valor}`);
 });
+const Roberto = {
+    name: "Roberto",
+    birthYear: 1996,
+    city: "Sartaguda"
+};
+function getPersonInfo(currentYear, persona) {
+    const edad = currentYear - persona.birthYear;
+    return [persona.name, edad];
+}
+const resultadoE8 = getPersonInfo(2025, Roberto);
+console.log(resultadoE8);
+//EJERCICIO 9 
+var Medallas;
+(function (Medallas) {
+    Medallas["First"] = "Oro";
+    Medallas["Second"] = "Plata";
+    Medallas["Third"] = "Bronce";
+})(Medallas || (Medallas = {}));
+function showMedal(clasificacion, medallas) {
+    console.log(`Has ganado la medalla de ${medallas[clasificacion].toLowerCase()}`);
+}
+showMedal("First", Medallas);
+showMedal("Second", Medallas);
+showMedal("Third", Medallas);

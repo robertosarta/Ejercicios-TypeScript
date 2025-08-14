@@ -68,7 +68,6 @@ if (!formE7 || !inputE7) {
 }
 
 formE7.addEventListener("submit", (event: SubmitEvent) => {
-	event.preventDefault(); //hace que la pagina no se recarge
 	const valor: string = inputE7.value.trim();;
 	if (valor === "") {
 		console.warn("El campo de texto esta vacio");;
@@ -77,3 +76,39 @@ formE7.addEventListener("submit", (event: SubmitEvent) => {
 
 	console.log(`valor enviado: ${valor}`);
 })
+
+// EJERCICIO 8
+type Persona = {
+	name: string;
+	birthYear: number;
+	city?: string;
+};
+
+const Roberto: Persona = {
+	name: "Roberto",
+	birthYear: 1996,
+	city: "Sartaguda"
+} as const;
+function getPersonInfo(currentYear: number, persona: Persona): [string, number] {
+const edad = currentYear - persona.birthYear;
+return [persona.name, edad];
+}
+
+const resultadoE8 = getPersonInfo(2025, Roberto);
+console.log(resultadoE8);
+
+//EJERCICIO 9 
+enum Medallas {
+	First = "Oro",
+	Second = "Plata",
+	Third = "Bronce",
+}
+
+type MedalsType = typeof Medallas;
+
+function showMedal(clasificacion: keyof MedalsType, medallas: MedalsType): void{
+	console.log(`Has ganado la medalla de ${medallas[clasificacion].toLowerCase()}`)
+}
+showMedal("First", Medallas);
+showMedal("Second", Medallas);
+showMedal("Third", Medallas);
